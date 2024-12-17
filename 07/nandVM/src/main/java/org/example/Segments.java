@@ -7,7 +7,8 @@ public enum Segments {
     THIS("this"),
     THAT("that"),
     TEMP("temp"),
-    POINTER("pointer");
+    POINTER("pointer"),
+    STATIC("static");
 
     String commamd;
 

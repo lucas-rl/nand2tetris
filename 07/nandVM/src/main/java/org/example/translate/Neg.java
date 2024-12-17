@@ -10,7 +10,9 @@ public class Neg implements ITranslate{
         asm.add("//neg");
         asm.add("@SP");
         asm.add("A=M-1");
-        asm.add("M=!M");
+        asm.add("D=M");
+        asm.add("M=M-D");
+        asm.add("M=M-D");
         return asm;
     }
 }

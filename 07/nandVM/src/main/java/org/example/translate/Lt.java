@@ -25,12 +25,19 @@ public class Lt implements ITranslate{
         asm.add("D;JLT");
 
         //false
+        asm.add("@SP");
+        asm.add("A=M-1");
+        asm.add("A=A-1");
         asm.add("M=0");
 
         asm.add("@"+labelContinua);
         asm.add("0;JMP");
 
+        //true
         asm.add("("+labelTrue+")");
+        asm.add("@SP");
+        asm.add("A=M-1");
+        asm.add("A=A-1");
         asm.add("M=1");
 
 

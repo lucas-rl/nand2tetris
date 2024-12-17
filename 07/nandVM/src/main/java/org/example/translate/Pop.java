@@ -13,16 +13,21 @@ public class Pop implements ITranslate{
 
         //Poe em R13 endereço que vai receber valor
         Segments pointer = Segments.find(args[0]);
-        asm.add("@"+args[1]);
+        asm.add("@" + args[1]);
         asm.add("D=A");
-        if(pointer.equals(Segments.TEMP)){
+        if (pointer.equals(Segments.TEMP)) {
             asm.add("@5");
-        } else if(pointer.equals(Segments.POINTER)){
+            asm.add("D=D+A");
+        } else if (pointer.equals(Segments.POINTER)) {
             asm.add("@3");
+            asm.add("D=D+A");
+        } else if(pointer.equals(Segments.STATIC)){
+            asm.add("@estatico." + args[1]);
+            asm.add("D=A");
         } else {
             asm.add("@" + pointer.name());
+            asm.add("D=D+M");
         }
-        asm.add("D=D+M");
         asm.add("@R13");
         asm.add("M=D");
 

@@ -17,12 +17,16 @@ public class Push implements ITranslate{
         if (pointer != null) {
             if(pointer.equals(Segments.TEMP)){
                 asm.add("@5");
+                asm.add("A=D+A");
             } else if(pointer.equals(Segments.POINTER)){
                 asm.add("@3");
+                asm.add("A=D+A");
+            }else if(pointer.equals(Segments.STATIC)){
+                asm.add("@estatico." + args[1]);
             } else {
                 asm.add("@" + pointer.name());
+                asm.add("A=D+M");
             }
-            asm.add("A=D+M");
             asm.add("D=M");
         }
         asm.add("@SP");
