@@ -25,7 +25,11 @@ public class Parser {
 
     public VmCommand commandType(){
         if(currentInstruction.length == 1) return VmCommand.ARITHMETIC;
-        return VmCommand.valueOf(currentInstruction[0].toUpperCase());
+        try{
+            return VmCommand.valueOf(currentInstruction[0].toUpperCase());
+        } catch (IllegalArgumentException ex){
+            return VmCommand.LABEL;
+        }
     }
 
     public String[] getCurrentInstruction() {

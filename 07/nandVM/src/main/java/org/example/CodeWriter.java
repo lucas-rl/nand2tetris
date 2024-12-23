@@ -25,6 +25,9 @@ public class CodeWriter {
         translators.put("not", new Not());
         translators.put("or", new Or());
         translators.put("sub", new Sub());
+        translators.put("label", new Label());
+        translators.put("goto", new Goto());
+        translators.put("if-goto", new IfGoto());
     }
 
     BufferedWriter buffer;
@@ -39,6 +42,11 @@ public class CodeWriter {
 
     public void writePushPop(VmCommand command, String[] argumentos) throws IOException {
         ITranslate translator = translators.get(command.name());
+        writeCommand(translator.toAsm(argumentos));
+    }
+
+    public void writeLabel(String[] argumentos) throws IOException {
+        ITranslate translator = translators.get(argumentos[0]);
         writeCommand(translator.toAsm(argumentos));
     }
 

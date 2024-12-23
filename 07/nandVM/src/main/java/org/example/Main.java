@@ -20,8 +20,6 @@ public class Main {
             if(!commandType.equals(ARITHMETIC))
                 argumentos[1] = parser.arg2();
 
-            String[] instruction = parser.getCurrentInstruction();
-
             switch (commandType){
                 case ARITHMETIC:
                     codeWriter.writeArithmetic(argumentos);
@@ -29,7 +27,8 @@ public class Main {
                 case PUSH:
                 case POP:
                     codeWriter.writePushPop(commandType, argumentos);
-
+                case LABEL:
+                    codeWriter.writeLabel(argumentos);
             }
         }
 
