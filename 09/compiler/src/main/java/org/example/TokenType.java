@@ -5,5 +5,10 @@ public enum TokenType {
     SYMBOL,
     IDENTIFIER,
     INT_CONST,
-    STRING_CONST
+    STRING_CONST;
+
+    @Override
+    public String toString(){
+        return this.name().toLowerCase();
+    }
 }

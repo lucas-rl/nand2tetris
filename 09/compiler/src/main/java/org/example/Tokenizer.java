@@ -71,6 +71,8 @@ public class Tokenizer {
 
     public boolean hasMoreTokens() throws IOException {
         while (tokens.isEmpty() && nextLine != null){
+            nextLine = nextLine.trim();
+            nextLine = removeComment(nextLine);
             populateTokens();
         }
         return !tokens.isEmpty();
@@ -92,7 +94,13 @@ public class Tokenizer {
         return currentToken;
     }
     String symbol(){
-        return currentToken;
+        return switch (currentToken){
+            case "<" -> "&lt;";
+            case ">" -> "&gt;";
+            case "\"" -> "&quot;";
+            case "&" -> "&amp;";
+            default -> currentToken;
+        };
     }
     String identifier(){
         return currentToken;
